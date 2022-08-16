@@ -45,13 +45,13 @@ class User(AbstractUser):
         return "{}".format(self.email)
 
 
-# class Profile(models.Model):
-#   user = models.ForeignKey(User, on_delete=models.CASCADE)
-#   profile_id = models.AutoField(primary_key=True)
-#   fullname = models.CharField(blank=False, null=False, max_length=100)
-#   title = models.CharField(blank=True, null=True, max_length=100)
+class Profile(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  profile_id = models.AutoField(primary_key=True)
+  fullname = models.CharField(blank=False, null=False, max_length=100)
+  title = models.CharField(blank=True, null=True, max_length=100)
 
-#   REQUIRED_FIELDS = ['fullname', ]
+  REQUIRED_FIELDS = ['fullname', ]
 
-#   def __str__(self):
-#     return "Profile {}".format(self.user.email)
+  def __str__(self):
+    return "Profile {}".format(self.user.email)
