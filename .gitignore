@@ -1,4 +1,5 @@
 backend/venv
 .vscode
 
-server/.env
+backend/server/.env
+backend/server
