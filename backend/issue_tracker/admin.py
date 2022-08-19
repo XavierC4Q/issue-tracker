@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
-from .models import User, Profile
+from .models import User, Profile, Team
 
 class UserAdmin(BaseUserAdmin):
   fieldsets = (
@@ -22,3 +22,4 @@ class UserAdmin(BaseUserAdmin):
 
 admin.site.register(User, UserAdmin)
 admin.site.register(Profile)
+admin.site.register(Team)
