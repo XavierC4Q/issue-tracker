@@ -11,8 +11,11 @@ class UserType(DjangoObjectType):
 
 class Query(graphene.ObjectType):
     all_users = graphene.List(UserType)
+
     user_by_uid = graphene.Field(UserType, uid=graphene.String(required=True))
-    user_by_email = graphene.Field(UserType, email=graphene.String(required=True))
+
+    user_by_email = graphene.Field(
+        UserType, email=graphene.String(required=True))
 
     def resolve_all_users(root, info):
         return User.objects.all()

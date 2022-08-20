@@ -11,6 +11,7 @@ class ProfileType(DjangoObjectType):
 
 class Query(graphene.ObjectType):
     all_profiles = graphene.List(ProfileType)
+
     profile = graphene.Field(
         ProfileType, profile_id=graphene.String(required=True))
 
