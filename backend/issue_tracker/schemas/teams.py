@@ -64,9 +64,27 @@ class AddProfileMutation(graphene.Mutation):
         return AddProfileMutation(team=team)
 
 
+class RemoveProfileMutation(graphene.Mutation):
+    class Arguments:
+        profile_id = graphene.String(required=True)
+        team_id = graphene.String(required=True)
+
+    team = graphene.Field(TeamType)
+
+    @classmethod
+    def mutate(cls, root, info, profile_id, team_id):
+        profile = Profile.objects.get(profile_id=profile_id)
+        team = Team.objects.get(team_id=team_id)
+        team.profiles.remove(profile)
+        team.save()
+
+        return RemoveProfileMutation(team=team)
+
+
 class Mutation(graphene.ObjectType):
     create_team = CreateTeamMutation.Field()
     add_profile_to_team = AddProfileMutation.Field()
+    remove_profile_from_team = RemoveProfileMutation.Field()
 
 
 schema = graphene.Schema(query=Query, mutation=Mutation, )
