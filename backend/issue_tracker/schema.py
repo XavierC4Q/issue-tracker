@@ -3,13 +3,22 @@ from graphene_django import DjangoObjectType
 from .schemas.users import schema as user_schema
 from .schemas.profiles import schema as profile_schema
 from .schemas.teams import schema as team_schema
+from graphql_auth.schema import MeQuery, UserQuery
+from graphql_auth import mutations
+
+class CustomUserQuery(UserQuery):
+    class Meta:
+        exclude = ('username', )
+
+class AuthMutation(graphene.ObjectType):
+    register = mutations.Register.Field()
 
 
-class Query(user_schema.Query, profile_schema.Query, team_schema.Query, graphene.ObjectType):
+class Query(user_schema.Query, profile_schema.Query, team_schema.Query, CustomUserQuery, MeQuery, graphene.ObjectType):
     pass
 
 
-class Mutation(user_schema.Mutation, profile_schema.Mutation, team_schema.Mutation, graphene.ObjectType):
+class Mutation(user_schema.Mutation, profile_schema.Mutation, team_schema.Mutation, AuthMutation, graphene.ObjectType):
     pass
 
 
