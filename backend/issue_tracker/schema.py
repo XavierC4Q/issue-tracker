@@ -6,10 +6,13 @@ from .schemas.teams import schema as team_schema
 from graphql_auth.schema import MeQuery, UserQuery
 from graphql_auth import mutations
 
+
 class AuthMutation(graphene.ObjectType):
     register = mutations.Register.Field()
     verify_account = mutations.VerifyAccount.Field()
     token_auth = mutations.ObtainJSONWebToken.Field()
+    verify_token = mutations.VerifyToken.Field()
+    refresh_token = mutations.RefreshToken.Field()
 
 
 class Query(user_schema.Query, profile_schema.Query, team_schema.Query, UserQuery, MeQuery, graphene.ObjectType):
