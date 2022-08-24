@@ -42,14 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_filters',
     'graphene_django',
-    "graphql_auth",
+    'graphql_auth',
     'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
 ]
 
 AUTH_USER_MODEL = 'issue_tracker.User'
 
 GRAPHENE = {
-    "SCHEMA": "issue_tracker.schema.schema",
+    'SCHEMA': 'issue_tracker.schema.schema',
     'MIDDLEWARE': [
         'graphql_jwt.middleware.JSONWebTokenMiddleware',
     ],
@@ -62,27 +62,27 @@ GRAPHQL_AUTH = {
     'REGISTER_MUTATION_FIELDS': ['email', ],
     'LOGIN_ALLOWED_FIELDS': ['email', ],
     'USER_NODE_FILTER_FIELDS': {
-        "email": ["exact", ],
-        "is_active": ["exact"],
-        "status__archived": ["exact"],
-        "status__verified": ["exact"],
-        "status__secondary_email": ["exact"],
+        'email': ['exact', ],
+        'is_active': ['exact'],
+        'status__archived': ['exact'],
+        'status__verified': ['exact'],
+        'status__secondary_email': ['exact'],
     },
-    "USER_NODE_EXCLUDE_FIELDS": ["password", "is_superuser", "id", "pk", 'username', ]
+    'USER_NODE_EXCLUDE_FIELDS': ['password', 'is_superuser', 'id', 'username', ]
 }
 
 GRAPHQL_JWT = {
-    "JWT_VERIFY_EXPIRATION": True,
-
-    # optional
-    "JWT_LONG_RUNNING_REFRESH_TOKEN": True,
-    "JWT_ALLOW_ANY_CLASSES": [
-        "graphql_auth.mutations.Register",
+    'JWT_VERIFY_EXPIRATION': True,
+    'JWT_LONG_RUNNING_REFRESH_TOKEN': True,
+    'JWT_ALLOW_ANY_CLASSES': [
+        'graphql_auth.mutations.Register',
+        'graphql_auth.mutations.VerifyAccount',
+        'graphql_auth.mutations.ObtainJSONWebToken',
     ],
 }
 
 AUTHENTICATION_BACKENDS = [
-    "graphql_auth.backends.GraphQLAuthBackend",
+    'graphql_auth.backends.GraphQLAuthBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
 

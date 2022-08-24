@@ -6,15 +6,13 @@ from .schemas.teams import schema as team_schema
 from graphql_auth.schema import MeQuery, UserQuery
 from graphql_auth import mutations
 
-class CustomUserQuery(UserQuery):
-    class Meta:
-        exclude = ('username', )
-
 class AuthMutation(graphene.ObjectType):
     register = mutations.Register.Field()
+    verify_account = mutations.VerifyAccount.Field()
+    token_auth = mutations.ObtainJSONWebToken.Field()
 
 
-class Query(user_schema.Query, profile_schema.Query, team_schema.Query, CustomUserQuery, MeQuery, graphene.ObjectType):
+class Query(user_schema.Query, profile_schema.Query, team_schema.Query, UserQuery, MeQuery, graphene.ObjectType):
     pass
 
 
