@@ -16,3 +16,11 @@ export interface UserType extends UserNode {
 export interface IMeQuery {
   me: UserNode | null;
 }
+
+export interface ITokenAuthMutation {
+  tokenAuth: {
+    token: string;
+    success: boolean;
+    errors: { [key: string]: any };
+  };
+}
