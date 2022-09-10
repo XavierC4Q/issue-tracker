@@ -2,6 +2,7 @@ import getTestIDs from '../../utils/getTestIds';
 
 interface IButton {
   children: any;
+  handleClick?: () => void;
   type?: 'button' | 'submit';
 }
 
