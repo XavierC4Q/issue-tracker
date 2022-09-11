@@ -27,6 +27,7 @@ export default function Login() {
 
   const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
+    console.log(event.target)
     setInputs({ ...inputs, [name]: value });
   };
 

@@ -15,14 +15,14 @@ interface IInput {
   classes?: string;
   error?: string;
   placeholder?: string;
-  type?: 'email' | 'input' | 'password';
+  type?: 'email' | 'text' | 'password';
 }
 
 export const Input: React.FC<IInput> = ({
   id,
   name,
   label,
-  type = 'input',
+  type = 'text',
   value,
   placeholder = '',
   handleInput,
@@ -31,7 +31,7 @@ export const Input: React.FC<IInput> = ({
 }) => {
   return (
     <div>
-      <label htmlFor={name} data-testid={inputTestIds.label}>
+      <label id={`label-for-${id}`} htmlFor={id} data-testid={inputTestIds.label}>
         {label}
       </label>
       <input
@@ -41,7 +41,7 @@ export const Input: React.FC<IInput> = ({
         name={name}
         value={value}
         placeholder={placeholder}
-        onInput={handleInput}
+        onChange={handleInput}
         className={classes}
       />
       {error && <div data-testid={inputTestIds.error}>{error}</div>}
